@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anjana Sriya — Business Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F5F1;
+    --bg-alt:#ECEAE2;
+    --ink:#15191C;
+    --ink-soft:#52585F;
+    --line:#D7D3C7;
+    --teal:#2A6F77;
+    --amber:#C2752B;
+    --card:#FFFFFE;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--teal);color:#fff;}
+
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,245,241,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    max-width:1100px;margin:0 auto;padding:18px 32px;
+  }
+  .brand{
+    font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-0.01em;
+  }
+  .brand span{color:var(--teal);}
+  .nav-links{display:flex;gap:28px;font-size:14px;}
+  .nav-links a{
+    color:var(--ink-soft);position:relative;padding:4px 0;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+  .nav-cta{
+    font-family:var(--font-mono);font-size:12.5px;
+    border:1px solid var(--ink);padding:8px 14px;border-radius:3px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover{background:var(--ink);color:var(--bg);}
+  .nav-toggle{display:none;}
+
+  /* HERO */
+  .hero{
+    padding:88px 0 70px;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);font-size:12.5px;color:var(--teal);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .eyebrow::before{content:"";width:18px;height:1px;background:var(--teal);display:inline-block;}
+  h1{
+    font-family:var(--font-display);font-weight:600;
+    font-size:clamp(34px,5vw,56px);line-height:1.04;letter-spacing:-0.02em;
+    margin-bottom:22px;
+  }
+  h1 em{font-style:italic;font-weight:400;color:var(--teal);}
+  .hero p.lede{
+    font-size:17px;color:var(--ink-soft);max-width:46ch;margin-bottom:30px;
+  }
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-mono);font-size:13px;padding:12px 20px;border-radius:3px;
+    display:inline-flex;align-items:center;gap:8px;transition:all .2s ease;
+    border:1px solid var(--ink);
+  }
+  .btn-solid{background:var(--ink);color:var(--bg);}
+  .btn-solid:hover{background:var(--teal);border-color:var(--teal);}
+  .btn-ghost{color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg);}
+
+  .hero-viz{position:relative;}
+  .hero-viz svg{width:100%;height:auto;}
+  .viz-caption{
+    font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);
+    text-align:right;margin-top:8px;
+  }
+
+  /* SECTION shell */
+  section{padding:70px 0;border-top:1px solid var(--line);}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:38px;flex-wrap:wrap;gap:10px;}
+  .section-num{
+    font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);
+  }
+  h2{
+    font-family:var(--font-display);font-size:clamp(24px,3vw,32px);font-weight:600;letter-spacing:-0.01em;
+  }
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;}
+  .about-text p{color:var(--ink-soft);margin-bottom:16px;max-width:60ch;}
+  .about-text p strong{color:var(--ink);font-weight:600;}
+  .stat-block{
+    font-family:var(--font-mono);font-size:13px;
+    border:1px solid var(--line);background:var(--card);border-radius:4px;overflow:hidden;
+  }
+  .stat-block .row{
+    display:flex;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--line);
+  }
+  .stat-block .row:last-child{border-bottom:none;}
+  .stat-block .row span:first-child{color:var(--ink-soft);}
+  .stat-block .row span:last-child{text-align:right;max-width:60%;}
+  .stat-head{
+    background:var(--ink);color:var(--bg);padding:10px 16px;
+    font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  }
+
+  /* PROJECTS */
+  .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .project-card{
+    background:var(--card);border:1px solid var(--line);border-radius:5px;
+    padding:26px;display:flex;flex-direction:column;gap:14px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .project-card:hover{border-color:var(--teal);transform:translateY(-2px);}
+  .metric-line{
+    font-family:var(--font-mono);font-size:12px;color:var(--teal);
+    border-left:2px solid var(--teal);padding-left:10px;
+  }
+  .project-card h3{font-family:var(--font-display);font-size:19px;font-weight:600;}
+  .project-card p{color:var(--ink-soft);font-size:14.5px;}
+  .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px;}
+  .tag{
+    font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);
+    border:1px solid var(--line);padding:4px 9px;border-radius:20px;
+  }
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+  .skill-group h4{
+    font-family:var(--font-mono);font-size:12px;color:var(--amber);
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;
+  }
+  .skill-chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-size:13.5px;background:var(--bg-alt);padding:7px 12px;border-radius:3px;
+    border:1px solid var(--line);
+  }
+
+  /* CERTIFICATIONS */
+  .cert-intro{
+    font-family:var(--font-mono);font-size:13px;color:var(--teal);
+    margin-bottom:24px;border-left:2px solid var(--teal);padding-left:12px;
+  }
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+  .cert-card{
+    background:var(--card);border:1px solid var(--line);border-radius:4px;
+    padding:16px 18px;display:flex;flex-direction:column;gap:6px;
+    transition:border-color .2s ease;
+  }
+  .cert-card:hover{border-color:var(--teal);}
+  .cert-meta{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);}
+  .cert-name{font-size:14.5px;font-weight:500;line-height:1.35;}
+
+  /* EXPERIENCE strip */
+  .exp-list{display:flex;flex-direction:column;}
+  .exp-item{
+    display:grid;grid-template-columns:140px 1fr 1.4fr;gap:20px;
+    padding:24px 0;border-bottom:1px solid var(--line);align-items:start;
+  }
+  .exp-item:last-child{border-bottom:none;}
+  .exp-date{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);}
+  .exp-role{font-weight:600;font-family:var(--font-display);font-size:16px;}
+  .exp-org{color:var(--teal);font-size:13.5px;margin-top:2px;}
+  .exp-desc{color:var(--ink-soft);font-size:14px;}
+  .exp-bullets{margin-top:8px;padding-left:16px;display:flex;flex-direction:column;gap:5px;}
+  .exp-bullets li{font-size:13.5px;color:var(--ink-soft);line-height:1.5;}
+
+  /* CONTACT */
+  footer{
+    background:var(--ink);color:var(--bg);padding:60px 0 30px;
+  }
+  .footer-top{
+    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;
+    padding-bottom:40px;border-bottom:1px solid #2A2F33;margin-bottom:24px;
+  }
+  footer h2{color:var(--bg);}
+  footer .lede{color:#A8ADB2;max-width:42ch;margin-top:10px;font-size:15px;}
+  .footer-links{display:flex;gap:14px;flex-wrap:wrap;}
+  .footer-links a{
+    font-family:var(--font-mono);font-size:13px;border:1px solid #3A3F44;padding:10px 16px;border-radius:3px;
+    color:var(--bg);transition:all .2s ease;
+  }
+  .footer-links a:hover{background:var(--teal);border-color:var(--teal);}
+  .footer-bottom{
+    display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11.5px;color:#7A7F84;flex-wrap:wrap;gap:8px;
+  }
+
+  @media (max-width:780px){
+    .nav-links{display:none;}
+    .hero{grid-template-columns:1fr;padding-top:56px;}
+    .about-grid{grid-template-columns:1fr;}
+    .project-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:1fr;}
+    .exp-item{grid-template-columns:1fr;gap:6px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  .dot{opacity:0;animation:fadeIn .5s ease forwards;}
+  .reg-line{stroke-dasharray:340;stroke-dashoffset:340;animation:draw 1.4s ease forwards .3s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadeIn{to{opacity:1;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand">anjana<span>.</span>sriya</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certs</a>
+    </div>
+    <a class="nav-cta" href="#contact">Get in touch ↗</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;padding-top:88px;">
+    <div>
+      <div class="eyebrow">MS Business Analytics · UMass Amherst</div>
+      <h1>I turn messy data into decisions <em>worth trusting.</em></h1>
+      <p class="lede">Business analytics grad student with a habit of questioning the model before believing the output. Background in marketing and finance, now focused on analytics, dashboards, and the occasional regression that actually holds up.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#projects">View projects</a>
+        <a class="btn btn-ghost" href="resume.docx">Download résumé ↓</a>
+      </div>
+    </div>
+    <div class="hero-viz">
+      <img src="hero.png" alt="Analytics dashboard workspace" style="width:100%;border-radius:8px;box-shadow:0 8px 32px rgba(21,25,28,0.12);">
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <h2>About</h2>
+      <span class="section-num">01 / scope</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm an MS Business Analytics student at <strong>UMass Amherst</strong>, building on a few years of work that started in marketing, moved through finance, and landed on data — because that's where the actual answers were hiding.</p>
+        <p>Before grad school, I was a <strong>Marketing Associate at Infosys</strong> and a <strong>Finance Associate at AP Urban</strong>. Both roles left me with the same itch: people kept making decisions on gut feel when the data could've told them something better. So now I build the things that tell them.</p>
+        <p>Most of my recent work lives in Python — pandas, scikit-learn, statsmodels — and in the kind of regression and classification problems that look clean in a textbook and messy in real datasets. I'm currently looking for roles in <strong>Business Analysis, Marketing Analytics, Data Analytics, and Product Analytics</strong>.</p>
+      </div>
+      <div class="stat-block">
+        <div class="stat-head">// quick facts</div>
+        <div class="row"><span>Location</span><span>Amherst, MA</span></div>
+        <div class="row"><span>Education</span><span>MS Business Analytics, UMass Amherst</span></div>
+        <div class="row"><span>Prior roles</span><span>Marketing · Finance</span></div>
+        <div class="row"><span>Core tools</span><span>Python, SQL, Excel/VBA</span></div>
+        <div class="row"><span>Modeling</span><span>Regression, Classification, Clustering</span></div>
+        <div class="row"><span>Targeting</span><span>BA / Marketing &amp; Product Analytics</span></div>
+        <div class="row"><span>Status</span><span style="color:#2A6F77;">Open to opportunities</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head">
+      <h2>Selected projects</h2>
+      <span class="section-num">02 / work</span>
+    </div>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="metric-line">10 states · 7 dimensions · Excel + Power Query + VBA</div>
+        <h3>Best State to Live in US — Dashboard</h3>
+        <p>Built a multi-sheet Excel dashboard comparing 10 US states across Education, Crime, Diversity, Employment, Demographics, Housing, and Healthcare. Pulled and transformed data with Power Query, automated composite scoring and conditional formatting with VBA, and surfaced an Affordability Index weighting income, rent, and employment rate side by side.</p>
+        <div class="tag-row">
+          <span class="tag">Excel</span><span class="tag">Power Query</span><span class="tag">VBA</span><span class="tag">Dashboard</span><span class="tag">Data Transformation</span>
+        </div>
+        <div class="tag-row" style="margin-top:0;padding-top:0;">
+          <a href="Best_State_Dashboard.xlsm" download class="tag" style="color:var(--teal);border-color:var(--teal);">Download .xlsm ↓</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="metric-line">2015–2025 · FRED API · WTI oil + USD Index</div>
+        <h3>Oil Price &amp; US Dollar — Commodity &amp; Currency Analysis</h3>
+        <p>Investigated the relationship between WTI crude oil prices and the US Dollar Index over a decade of weekly data. Pulled both series from FRED, merged and resampled them, computed percentage returns and lagged features, then ran OLS regression and a correlation heatmap across Oil Return, USD Return, and Lag Oil Return. The short answer: the relationship is real but weaker than most people assume.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">pandas-datareader</span><span class="tag">yfinance</span><span class="tag">statsmodels</span><span class="tag">Seaborn</span>
+        </div>
+        <div class="tag-row" style="margin-top:0;padding-top:0;">
+          <a href="Oil_Price_USD_Analysis.ipynb" download class="tag" style="color:var(--teal);border-color:var(--teal);">Download notebook ↓</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="metric-line">laps analyzed: 1,000+ · source: FastF1 API</div>
+        <h3>F1 Telemetry &amp; Race Pace Analysis</h3>
+        <p>Pulled lap-by-lap telemetry with the FastF1 library and broke down driver pace, tire degradation, and sector deltas across a race weekend — mostly to settle an argument about who was actually faster.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">FastF1</span><span class="tag">pandas</span><span class="tag">matplotlib</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="metric-line">method: backward elimination + Lasso/Ridge</div>
+        <h3>Laptop Price Prediction</h3>
+        <p>Built a multiple linear regression model to predict laptop prices from spec data, then stress-tested it with regularization to see which "important" features were actually just noise.</p>
+        <div class="tag-row">
+          <span class="tag">scikit-learn</span><span class="tag">statsmodels</span><span class="tag">Regression</span>
+        </div>
+        <div class="tag-row" style="margin-top:0;padding-top:0;">
+          <a href="Laptop_Price_Prediction.ipynb" download class="tag" style="color:var(--teal);border-color:var(--teal);">Download notebook ↓</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="metric-line">4 data sources merged · KPIs: CTR, ROAS, ROI, CPA</div>
+        <h3>Marketing Analytics Pipeline</h3>
+        <p>Designed an end-to-end pipeline that merges campaign, spend, and conversion data into one view, computes core marketing KPIs, and renders them as interactive Plotly dashboards — built for a real use case, not a toy dataset.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">Plotly</span><span class="tag">KPI Design</span>
+        </div>
+        <div class="tag-row" style="margin-top:0;padding-top:0;">
+          <a href="Marketing_Analytics_Pipeline.ipynb" download class="tag" style="color:var(--teal);border-color:var(--teal);">Download notebook ↓</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="metric-line">48,000+ listings · EDA + multi-stakeholder insights</div>
+        <h3>NYC Airbnb Data Analysis</h3>
+        <p>Explored 48,000+ NYC Airbnb listings across all five boroughs, built interactive Plotly Express visualizations, and framed findings for three audiences — hosts optimizing pricing, guests finding value, and the platform managing supply. Identified neighborhood-level pricing patterns and availability seasonality.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Plotly Express</span><span class="tag">EDA</span>
+        </div>
+        <div class="tag-row" style="margin-top:0;padding-top:0;">
+          <a href="NYC_Airbnb_Analysis.ipynb" download class="tag" style="color:var(--teal);border-color:var(--teal);">Download notebook ↓</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="metric-line">115 respondents · chi-square + regression · Nykaa vs Sephora</div>
+        <h3>Application of AI in the Beauty Industry — Research Paper</h3>
+        <p>Authored a comparative research paper examining how Nykaa and Sephora deploy AI (virtual try-ons, personalization, chatbots, supply chain forecasting) in the Indian beauty market. Collected primary survey data from 115 respondents, ran chi-square tests and OLS regression, and surfaced findings on consumer trust, privacy concerns, and adoption barriers.</p>
+        <div class="tag-row">
+          <span class="tag">Primary Research</span><span class="tag">Chi-Square</span><span class="tag">Regression</span><span class="tag">Data Analysis</span><span class="tag">Research Paper</span>
+        </div>
+        <div class="tag-row" style="margin-top:0;padding-top:0;">
+          <a href="AI_in_Beauty_Industry_Research.pdf" download class="tag" style="color:var(--teal);border-color:var(--teal);">Download PDF ↓</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="metric-line">retail sales · trend analysis · product-level breakdown</div>
+        <h3>Target Sales Analysis</h3>
+        <p>Analyzed Target retail sales data to uncover revenue trends, top-performing product categories, and regional performance patterns. Built category-level breakdowns and time-series visualizations to identify growth drivers and underperforming segments.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Matplotlib</span><span class="tag">EDA</span>
+        </div>
+        <div class="tag-row" style="margin-top:0;padding-top:0;">
+          <a href="Target_Sales_Analysis.ipynb" download class="tag" style="color:var(--teal);border-color:var(--teal);">Download notebook ↓</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <span class="section-num">03 / toolkit</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages &amp; data</h4>
+        <div class="skill-chips">
+          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Excel / VBA</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>BI &amp; Visualization</h4>
+        <div class="skill-chips">
+          <span class="chip">Power BI</span><span class="chip">Dashboard Design</span><span class="chip">Data Visualization</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span><span class="chip">Plotly</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Data Engineering</h4>
+        <div class="skill-chips">
+          <span class="chip">Power Query</span><span class="chip">Data Transformation</span><span class="chip">pandas</span><span class="chip">Web Scraping</span><span class="chip">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Modeling &amp; ML</h4>
+        <div class="skill-chips">
+          <span class="chip">Machine Learning</span><span class="chip">Data Science</span><span class="chip">scikit-learn</span><span class="chip">statsmodels</span><span class="chip">Regression</span><span class="chip">Lasso / Ridge</span><span class="chip">Classification</span><span class="chip">Clustering</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Analytical Expertise</h4>
+        <div class="skill-chips">
+          <span class="chip">A/B Testing</span><span class="chip">Hypothesis Testing</span><span class="chip">Regression Models</span><span class="chip">Cohort Analysis</span><span class="chip">Funnel Mapping</span><span class="chip">KPI Design</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-head">
+      <h2>Education</h2>
+      <span class="section-num">04 / academic</span>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-date">2024 — Present</div>
+        <div>
+          <div class="exp-role">MS Business Analytics</div>
+          <div class="exp-org">University of Massachusetts Amherst · GPA 3.97</div>
+        </div>
+        <div class="exp-desc">Coursework in regression modeling, machine learning, statistical inference, data visualization, and business strategy — applied to real-world datasets across marketing, finance, and operations.</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">Prior</div>
+        <div>
+          <div class="exp-role">BBA — Business Analytics (Marketing)</div>
+          <div class="exp-org">Osmania University · CPA 3.5</div>
+        </div>
+        <div class="exp-desc">Undergraduate foundation in business analytics with a marketing specialization — covering statistics, consumer behaviour, and data-driven decision making.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head">
+      <h2>Work Experience</h2>
+      <span class="section-num">05 / track record</span>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-date">Prior</div>
+        <div>
+          <div class="exp-role">Marketing Associate Intern</div>
+          <div class="exp-org">Infosys · Springboard Platform</div>
+        </div>
+        <div class="exp-desc">
+          Developed targeted marketing strategies to increase awareness and adoption of the Infosys Springboard digital learning platform.
+          <ul class="exp-bullets">
+            <li>Mapped the learner funnel (activation → module-2 drop-off → completion) and built a weekly KPI dashboard in Excel and Tableau.</li>
+            <li>Ran A/B tests on nudges (in-app + email timing/copy); course completion improved 12% and email CTR lifted 7–9%.</li>
+            <li>Instrumented missing tracking events with the product team, enabling cleaner data transformation and improving cohort retention accuracy.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">Prior</div>
+        <div>
+          <div class="exp-role">Finance Associate Intern</div>
+          <div class="exp-org">AP Urban</div>
+        </div>
+        <div class="exp-desc">
+          Replaced manual Excel roll-ups with a Power Query pipeline and Tableau dashboard for sanitation and finance KPIs, reducing turnaround time by 30%.
+          <ul class="exp-bullets">
+            <li>Standardized field-office submissions with data validation, lookup logic, and error checks.</li>
+            <li>Automated monthly A/P, A/R and ledger reconciliations in Excel (PivotTables, XLOOKUP, conditional flags).</li>
+            <li>Trained staff on the new workflow and authored a "How to Read This Dashboard" guide for non-analysts.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-head">
+      <h2>Certifications</h2>
+      <span class="section-num">06 / learning</span>
+    </div>
+    <div class="cert-intro">10 courses completed on DataCamp — focused on Python for data analysis</div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-meta">Jun 14, 2026 · 4 hrs · DataCamp</div>
+        <div class="cert-name">Exploratory Data Analysis in Python</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-meta">Jun 14, 2026 · 4 hrs · DataCamp</div>
+        <div class="cert-name">Cleaning Data in Python</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-meta">Jun 8, 2026 · 4 hrs · DataCamp</div>
+        <div class="cert-name">Python Toolbox</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-meta">May 21, 2026 · 4 hrs · DataCamp</div>
+        <div class="cert-name">Data Manipulation with pandas</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-meta">May 21, 2026 · 4 hrs · DataCamp</div>
+        <div class="cert-name">Supervised Learning with scikit-learn</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-meta">Apr 23, 2026 · 4 hrs · DataCamp</div>
+        <div class="cert-name">Web Scraping in Python</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-meta">Apr 16, 2026 · 2 hrs · DataCamp</div>
+        <div class="cert-name">Intermediate Importing Data in Python</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-meta">Apr 14, 2026 · 2 hrs · DataCamp</div>
+        <div class="cert-name">Introduction to APIs in Python</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-meta">Mar 31, 2026 · 4 hrs · DataCamp</div>
+        <div class="cert-name">Introduction to Regression with statsmodels in Python</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-meta">DataCamp</div>
+        <div class="cert-name">Introduction to Functions in Python</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <h2>Let's talk data.</h2>
+        <p class="lede">Open to Business Analysis, Marketing Analytics, Data Analytics, and Product Analytics roles. Reach out if something here is relevant.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:anjanasriya20@gmail.com">Email ↗</a>
+        <a href="https://www.linkedin.com/in/anjanasriya/" target="_blank">LinkedIn ↗</a>
+        <a href="resume.docx">Résumé ↓</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Anjana Sriya</span>
+      <span>Built with HTML, CSS &amp; a healthy amount of skepticism</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
