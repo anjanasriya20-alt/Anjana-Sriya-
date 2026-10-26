@@ -1,0 +1,8 @@
+pandas>=2.2
+numpy>=1.26
+matplotlib>=3.8
+seaborn>=0.13
+mlba==2.0.5
+pandas-datareader>=0.10
+yfinance>=0.2
+statsmodels>=0.14

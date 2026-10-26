@@ -1,0 +1,123 @@
+{
+  "provenance": "Synthetic portfolio demonstration; not GVQ or client data.",
+  "materials": [
+    {
+      "material_id": 4,
+      "material_name": "Paint",
+      "unit": "litres",
+      "project_count": 3,
+      "required_qty": 190.0,
+      "available_qty": 110.0,
+      "shortage_qty": 80.0,
+      "shortage_pct": 42.1,
+      "priority_rank": 1
+    },
+    {
+      "material_id": 2,
+      "material_name": "Floor tile",
+      "unit": "m2",
+      "project_count": 3,
+      "required_qty": 400.0,
+      "available_qty": 275.0,
+      "shortage_qty": 125.0,
+      "shortage_pct": 31.3,
+      "priority_rank": 2
+    },
+    {
+      "material_id": 1,
+      "material_name": "Cement",
+      "unit": "bags",
+      "project_count": 3,
+      "required_qty": 200.0,
+      "available_qty": 160.0,
+      "shortage_qty": 40.0,
+      "shortage_pct": 20.0,
+      "priority_rank": 3
+    },
+    {
+      "material_id": 3,
+      "material_name": "Steel",
+      "unit": "kg",
+      "project_count": 3,
+      "required_qty": 1400.0,
+      "available_qty": 1600.0,
+      "shortage_qty": 0.0,
+      "shortage_pct": 0.0,
+      "priority_rank": 4
+    }
+  ],
+  "requirements": [
+    {
+      "project_name": "Courtyard Residence",
+      "material_name": "Cement",
+      "unit": "bags",
+      "required_qty": 120.0
+    },
+    {
+      "project_name": "Courtyard Residence",
+      "material_name": "Floor tile",
+      "unit": "m2",
+      "required_qty": 180.0
+    },
+    {
+      "project_name": "Courtyard Residence",
+      "material_name": "Steel",
+      "unit": "kg",
+      "required_qty": 950.0
+    },
+    {
+      "project_name": "Courtyard Residence",
+      "material_name": "Paint",
+      "unit": "litres",
+      "required_qty": 60.0
+    },
+    {
+      "project_name": "Studio Renovation",
+      "material_name": "Cement",
+      "unit": "bags",
+      "required_qty": 35.0
+    },
+    {
+      "project_name": "Studio Renovation",
+      "material_name": "Floor tile",
+      "unit": "m2",
+      "required_qty": 85.0
+    },
+    {
+      "project_name": "Studio Renovation",
+      "material_name": "Steel",
+      "unit": "kg",
+      "required_qty": 150.0
+    },
+    {
+      "project_name": "Studio Renovation",
+      "material_name": "Paint",
+      "unit": "litres",
+      "required_qty": 40.0
+    },
+    {
+      "project_name": "Office Fit-out",
+      "material_name": "Cement",
+      "unit": "bags",
+      "required_qty": 45.0
+    },
+    {
+      "project_name": "Office Fit-out",
+      "material_name": "Floor tile",
+      "unit": "m2",
+      "required_qty": 135.0
+    },
+    {
+      "project_name": "Office Fit-out",
+      "material_name": "Steel",
+      "unit": "kg",
+      "required_qty": 300.0
+    },
+    {
+      "project_name": "Office Fit-out",
+      "material_name": "Paint",
+      "unit": "litres",
+      "required_qty": 90.0
+    }
+  ]
+}

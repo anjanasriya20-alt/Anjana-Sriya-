@@ -1,0 +1,5 @@
+material_id,material_name,unit,project_count,required_qty,available_qty,shortage_qty,shortage_pct,priority_rank
+4,Paint,litres,3,190.0,110.0,80.0,42.1,1
+2,Floor tile,m2,3,400.0,275.0,125.0,31.3,2
+1,Cement,bags,3,200.0,160.0,40.0,20.0,3
+3,Steel,kg,3,1400.0,1600.0,0.0,0.0,4

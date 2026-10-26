@@ -1,0 +1,6 @@
+neighbourhood_group,listings,median_price,median_available_days
+Bronx,1125,75.0,180.0
+Brooklyn,14678,98.0,64.0
+Manhattan,16575,139.0,83.0
+Queens,5431,75.0,137.0
+Staten Island,340,89.0,179.5

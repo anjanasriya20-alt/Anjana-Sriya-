@@ -1,0 +1,5 @@
+room_type,listings,median_price,median_available_days
+Entire home/apt,20376,150.0,88.0
+Hotel room,173,184.0,337.0
+Private room,17034,67.0,83.0
+Shared room,566,50.0,127.0
